@@ -18,7 +18,27 @@
             <th scope="col" class="d-none d-md-table-cell">Opções</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <tr *ngFor="let prod of products">
+            <td>{{ prod.id }}</td>
+            <td>{{ prod.name }}</td>
+            <td>{{ prod.description }}</td>
+            <td>{{ prod.price }}</td>
+            <td>{{ prod.category.name }}</td>
+            <td>
+              <span
+                class="badge text-bg-primary d-none d-md-table-cell me-1"
+                *ngIf="prod.newProduct"
+                >L</span
+              >
+              <span
+                class="badge text-bg-success d-none d-md-table-cell me-1"
+                *ngIf="prod.promotion"
+                >P</span
+              >
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

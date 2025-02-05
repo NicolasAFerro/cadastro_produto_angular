@@ -14,7 +14,7 @@ export class ProductsComponent {
   //se eud deixar assim, eu consigo condicionar oq quero ou não mostrar o componente.
   //ai todo o templante/layout do component filho desapareça
   //product ?: Product;
-
+  products:Product[]=[];
 
   categories: Category[] = [
     {
@@ -35,6 +35,10 @@ export class ProductsComponent {
     },
   ];
   saveProduct(){
-    console.log('salvei o produto');
+    this.product.id=this.products.length+1;
+    this.products.push(this.product);
+
+    this.product= {} as Product;
+    console.log('salvei o produto'+ this.products.length);
   }
 }

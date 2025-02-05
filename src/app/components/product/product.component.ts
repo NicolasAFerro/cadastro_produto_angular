@@ -22,6 +22,7 @@ export class ProductComponent {
 
   save(){
     this.saveEmitter.emit();
+
   }
 
   teste(){
