@@ -3,11 +3,18 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <!--ele recarrega por padrão a página. Para tirar-->
-      <form id="formProducts">
+      <form id="formProducts" #formProduct="ngForm">
         <div class="row mb-3 mt-3">
           <label for="inputName" class="col-sm-2 col-form-label">Nome</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName" required />
+            <input
+              type="text"
+              class="form-control"
+              id="inputName"
+              name="inputName"
+              required
+              [(ngModel)]="product.name"
+            />
           </div>
         </div>
         <div class="row mb-3 mt-3">
@@ -19,7 +26,9 @@
               type="text"
               class="form-control"
               id="inputDescription"
+              name="inputDescription"
               required
+              [(ngModel)]="product.description"
             />
           </div>
         </div>
@@ -27,7 +36,14 @@
         <div class="row mb-3 mt-3">
           <label for="inputPrice" class="col-sm-2 col-form-label">Preço</label>
           <div class="col-sm-4">
-            <input type="text" class="form-control" id="inputPrice" required />
+            <input
+              type="text"
+              class="form-control"
+              id="inputPrice"
+              name="inputPrice"
+              required
+              [(ngModel)]="product.price"
+            />
           </div>
 
           <label for="selectCategory" class="col-sm-2 col-form-label"
@@ -38,10 +54,14 @@
               class="form-select"
               aria-label="Selecione uma Categoria"
               id="selectCategory"
+              name="selectCategory"
               required
+              [(ngModel)]="product.category"
             >
               <!-- tem que ter um value sem nada para que funcione na submissão do formulário-->
-              <option *ngFor="let cat of sonCategories">{{ cat.name }}</option>
+              <option *ngFor="let cat of sonCategories" [ngValue]="cat">
+                {{ cat.name }}
+              </option>
             </select>
           </div>
         </div>
@@ -54,6 +74,8 @@
                 type="checkbox"
                 value=""
                 id="checkBoxPromotion"
+                name="checkBoxPromotion"
+                [(ngModel)]="product.promotion"
               />
               <label class="form-check-label" for="checkBoxPromotion">
                 Promoção
@@ -65,6 +87,8 @@
                 type="checkbox"
                 value=""
                 id="checkBoxLancamento"
+                name="checkBoxLancamento"
+                [(ngModel)]="product.newProduct"
               />
               <label class="form-check-label" for="checkBoxLancamento">
                 Lançamento
@@ -74,7 +98,7 @@
         </div>
         <div class="row mb-3 mt-3">
           <div class="col-sm-4">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button (click)="teste()" class="btn btn-primary">Cadastrar</button>
           </div>
         </div>
       </form>
