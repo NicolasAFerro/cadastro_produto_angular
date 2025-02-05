@@ -98,7 +98,13 @@
         </div>
         <div class="row mb-3 mt-3">
           <div class="col-sm-4">
-            <button (click)="teste()" class="btn btn-primary">Cadastrar</button>
+            <button
+              (click)="teste()"
+              class="btn btn-primary"
+              [disabled]="formProduct.invalid"
+            >
+              Cadastrar
+            </button>
           </div>
         </div>
       </form>
