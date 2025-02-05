@@ -34,4 +34,7 @@ export class ProductsComponent {
       name: 'Premium',
     },
   ];
+  saveProduct(){
+    console.log('salvei o produto');
+  }
 }

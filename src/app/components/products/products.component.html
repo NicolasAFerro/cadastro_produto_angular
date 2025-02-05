@@ -1,4 +1,8 @@
-<app-product [sonCategories]="categories" [product]="product"></app-product>
+<app-product
+  [sonCategories]="categories"
+  [product]="product"
+  (saveEmitter)="saveProduct()"
+></app-product>
 <div class="container w-75">
   <div class="display-6">Produtos Cadastrados:</div>
   <div class="row">
