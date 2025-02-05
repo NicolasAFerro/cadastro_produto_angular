@@ -23,7 +23,8 @@
             <td>{{ prod.id }}</td>
             <td>{{ prod.name }}</td>
             <td>{{ prod.description }}</td>
-            <td>{{ prod.price }}</td>
+            <!--<td>{{ prod.price | number : "1.2-2" }}</td>-->
+            <td>{{ prod.price | currency : "BRL" }}</td>
             <td>{{ prod.category.name }}</td>
             <td>
               <span
