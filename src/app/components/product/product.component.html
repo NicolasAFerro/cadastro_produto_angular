@@ -41,7 +41,7 @@
               required
             >
               <!-- tem que ter um value sem nada para que funcione na submissão do formulário-->
-              <option value="" selected>Escolha</option>
+              <option *ngFor="let cat of sonCategories">{{ cat.name }}</option>
             </select>
           </div>
         </div>
