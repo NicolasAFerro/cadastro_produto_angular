@@ -1,6 +1,6 @@
 <div class="container w-75 mt-3">
   <div class="display-6">Formulário de Cadastros:</div>
-  <div class="row">
+  <div *ngIf="product" class="row">
     <div class="col-md-10 offset-md-1">
       <!--ele recarrega por padrão a página. Para tirar-->
       <form id="formProducts" #formProduct="ngForm">
