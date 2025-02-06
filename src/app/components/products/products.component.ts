@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Category } from '../../interfaces/category';
 import { Product } from '../../interfaces/Product';
+import { CategoryService } from '../../services/category.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -10,35 +12,42 @@ import { Product } from '../../interfaces/Product';
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-  product: Product={}as Product;
+  //variaveis
+  product: Product = {} as Product;
   //se eud deixar assim, eu consigo condicionar oq quero ou não mostrar o componente.
   //ai todo o templante/layout do component filho desapareça
   //product ?: Product;
-  products:Product[]=[];
+  products: Product[] = [];
+  categories: Category[] = [];
 
-  categories: Category[] = [
-    {
-      id: 1,
-      name: 'Produção Própria',
-    },
-    {
-      id: 2,
-      name: 'Nacional',
-    },
-    {
-      id: 3,
-      name: 'Importado',
-    },
-    {
-      id: 4,
-      name: 'Premium',
-    },
-  ];
-  saveProduct(){
-    this.product.id=this.products.length+1;
-    this.products.push(this.product);
+  constructor(
+    private categoryService: CategoryService,
+    private productService: ProductService
+  ) {
+    //this.categories = this.categoryService.getCategories();
+  }
 
-    this.product= {} as Product;
-    console.log('salvei o produto'+ this.products.length);
+  ngOnInit(): void {
+    //os dois dão certo, colocar no init e colocar no constructor
+    this.categories = this.categoryService.getCategories();
+    this.products = this.productService.getProducts();
+  }
+
+  saveProduct() {
+    this.productService.saveProduct(this.product);
+    this.product = {} as Product;
+    console.log('salvei o produto' + this.products.length);
   }
 }
+// O ngOnInit() faz parte do ciclo de vida do Angular.
+//  Ele é chamado depois que o Angular terminou de criar o componente e inicializar as
+//  suas propriedades.
+//   Aqui, o componente já está completamente configurado,
+//   o que é ideal para fazer chamadas a serviços,
+//    especialmente quando essas chamadas são assíncronas (como uma requisição HTTP).
+// Você está garantindo que o Angular já tenha terminado toda a configuração antes
+// de buscar as categorias.
+//  Isso é especialmente importante se getCategories()
+//   fizer uma chamada assíncrona (como um Observable ou Promise),
+//    pois o Angular estará pronto para lidar com a atualização do
+//     template quando os dados chegarem.
