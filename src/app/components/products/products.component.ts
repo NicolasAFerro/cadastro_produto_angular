@@ -29,7 +29,17 @@ export class ProductsComponent {
 
   ngOnInit(): void {
     //os dois dão certo, colocar no init e colocar no constructor
-    this.categories = this.categoryService.getCategories();
+    //this.categories = this.categoryService.getCategories();
+    //agora ele ^^ não devolve um array, e sim um observable que tem um array
+    //então faz vv
+    this.categoryService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
+      },
+      //faço a chamada, o Observable é recebido por um subscribe;
+      //o next avisa que chegou (variavel data) atribuo ao array de categorias
+    });
+
     this.products = this.productService.getProducts();
   }
 
