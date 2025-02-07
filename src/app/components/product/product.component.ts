@@ -1,5 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
-import { Category } from '../../interfaces/category';
+import { Category } from '../../interfaces/Category';
 import { Product } from '../../interfaces/Product';
 import { EventEmitter } from '@angular/core';
 
@@ -12,25 +12,22 @@ import { EventEmitter } from '@angular/core';
 })
 export class ProductComponent {
   @Input()
-  product ?: Product;
+  product?: Product;
 
   @Input()
   sonCategories: Category[] = [];
 
   @Output()
-  saveEmitter =new EventEmitter();
+  saveEmitter = new EventEmitter();
 
-  save(){
+  save() {
     this.saveEmitter.emit();
-
   }
 
-  teste(){
+  teste() {
     // console.log(`nome: ${this.product.name}\n descrição: ${this.product.description}`);
     // console.log(`\n preço: ${this.product.price}\n promoção: ${this.product.promotion}`);
     // console.log(`\n new: ${this.product.newProduct}\n categoria: ${this.product.category.name}`);
     // console.log(`\n ${this.product.category.id} `);
-
   }
-
 }

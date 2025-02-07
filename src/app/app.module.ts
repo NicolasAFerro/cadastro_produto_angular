@@ -16,8 +16,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { register } from 'module';
 import { registerLocaleData } from '@angular/common';
+//v nova maneira de fazer requisições http a partir do angular 15;
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
-registerLocaleData(localePt,'pt');
+registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
@@ -28,7 +33,11 @@ registerLocaleData(localePt,'pt');
     FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
-  providers: [provideClientHydration(withEventReplay()),{provide:LOCALE_ID,useValue:'pt'}],
+  providers: [
+    provideClientHydration(withEventReplay()),
+    { provide: LOCALE_ID, useValue: 'pt' },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

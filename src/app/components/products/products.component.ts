@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Category } from '../../interfaces/category';
+
 import { Product } from '../../interfaces/Product';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
+import { Category } from '../../interfaces/Category';
 
 @Component({
   selector: 'app-products',
@@ -40,11 +41,20 @@ export class ProductsComponent {
       //o next avisa que chegou (variavel data) atribuo ao array de categorias
     });
 
-    this.products = this.productService.getProducts();
+    //this.products = this.productService.getProducts();
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        this.products = data;
+      },
+    });
   }
 
   saveProduct() {
-    this.productService.saveProduct(this.product);
+    this.productService.save(this.product).subscribe({
+      next: (data) => {
+        this.products.push(data);
+      },
+    });
     this.product = {} as Product;
     console.log('salvei o produto' + this.products.length);
   }

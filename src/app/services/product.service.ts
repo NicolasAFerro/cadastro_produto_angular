@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/Product';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  products: Product[] = [];
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getProducts(): Product[] {
-    return this.products;
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:8080/products');
   }
 
-  saveProduct(product: Product): void {
-    product.id = this.products.length + 1;
-    this.products.push(product);
+  save(product: Product) {
+    return this.http.post<Product>('http://localhost:8080/products', product);
   }
 }
